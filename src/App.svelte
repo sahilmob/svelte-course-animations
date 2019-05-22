@@ -3,6 +3,7 @@
   import { cubicIn } from "svelte/easing";
   import Spring from "./Spring.svelte";
   import { fade, fly, slide, scale } from "svelte/transition";
+  import { flip } from "svelte/animate";
 
   let showParagraph = false;
   const progress = tweened(0, {
@@ -17,7 +18,7 @@
   let boxes = [];
 
   function addBox() {
-    boxes = [...boxes, Math.random()];
+    boxes = [Math.random(), ...boxes];
   }
 
   function discard(value) {
@@ -51,7 +52,8 @@
   {#each boxes as box (box)}
     <div
       transition:fly={{ easing: cubicIn, x: -300 }}
-      on:click={discard.bind(this, box)}>
+      on:click={discard.bind(this, box)}
+      animate:flip={{ duration: 200, easing: cubicIn }}>
        {box}
     </div>
   {/each}
