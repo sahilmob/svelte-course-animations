@@ -44,7 +44,7 @@
 <button on:click={() => (showParagraph = !showParagraph)}>Toggle</button>
 <button on:click={addBox}>Add box</button>
 {#if showParagraph}
-  <p transition:fly={{ x: 300 }}>Can you see me?</p>
+  <p in:fade out:fly={{ x: 300 }}>Can you see me?</p>
 {/if}
 
 {#if showParagraph}
